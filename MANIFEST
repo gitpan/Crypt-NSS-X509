@@ -7,7 +7,6 @@ certs/root.ca
 certs/selfsigned.crt
 certs/thawte-ec.crt
 certs/thawte.crt
-Crypt-NSS-X509-0.01_1.tar.gz
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -27,9 +26,6 @@ Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
-NSS/Certificate.pod
-NSS/CertList.pod
-NSS/CRL.pod
 README
 README.pod
 t/001-load.t
@@ -43,3 +39,9 @@ typemap
 X509.pm
 X509.pod
 X509.xs
+X509/Certificate.pm
+X509/Certificate.pod
+X509/CertList.pm
+X509/CertList.pod
+X509/CRL.pm
+X509/CRL.pod
