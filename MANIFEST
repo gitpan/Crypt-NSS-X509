@@ -7,6 +7,7 @@ certs/root.ca
 certs/selfsigned.crt
 certs/thawte-ec.crt
 certs/thawte.crt
+Crypt-NSS-X509-0.01_2.tar.gz
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
