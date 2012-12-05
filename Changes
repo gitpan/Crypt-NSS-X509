@@ -1,0 +1,9 @@
+Changes:
+
+* 0.02
+- author tests
+- documentation spelling
+- remove email function and change CERT_DestroyCrl to SEC_DestroyCrl (to work in older versions of nss where it does not end up in the lib for some reason).
+
+* 0.01
+- initial version

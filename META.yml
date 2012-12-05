@@ -30,4 +30,4 @@ resources:
   bugtracker: https://github.com/amannb/perl-nss/issues
   homepage: https://github.com/amannb/perl-nss
   license: http://opensource.org/licenses/mozilla1.1.php
-version: 0.02_01
+version: 0.02
