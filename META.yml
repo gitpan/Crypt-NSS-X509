@@ -6,8 +6,8 @@ build_requires:
   ExtUtils::MakeMaker: 6.59
   Test::More: 0.98
 configure_requires:
+  Alien::NSS: 0.02
   ExtUtils::MakeMaker: 6.59
-  ExtUtils::ParseXS: 2.21
 distribution_type: module
 dynamic_config: 1
 generated_by: 'Module::Install version 1.06'
@@ -21,13 +21,14 @@ no_index:
     - inc
     - t
 requires:
+  Alien::NSS: 0.02
   Exporter: 5.65
   MIME::Base64: 3.13
-  XSLoader: 0.02
   autodie: 2.1
   perl: 5.10.1
 resources:
   bugtracker: https://github.com/amannb/perl-nss/issues
   homepage: https://github.com/amannb/perl-nss
   license: http://opensource.org/licenses/mozilla1.1.php
-version: 0.02
+  repository: git://github.com/amannb/perl-nss.git
+version: 0.03_01
