@@ -31,4 +31,4 @@ resources:
   homepage: https://github.com/amannb/perl-nss
   license: http://opensource.org/licenses/mozilla1.1.php
   repository: git://github.com/amannb/perl-nss.git
-version: 0.03_02
+version: 0.03_03
