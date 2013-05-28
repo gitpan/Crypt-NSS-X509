@@ -539,6 +539,43 @@ SV* oid_to_sv(SECItem *oid)
   return newSVpvf("%s", out);
 }
 
+static void sv_encode(SV* in) {
+  if (!sv_utf8_decode(in)) {
+    // ok, yep, let's just handle it over to encode.
+    dSP;
+    int count = 0;
+
+    SV *utf8 = newSVpvn("UTF-8", 5);
+
+    ENTER;
+    SAVETMPS;
+
+    PUSHMARK(SP);
+    XPUSHs(utf8);
+    XPUSHs(in);
+    PUTBACK;
+
+    count = call_pv("Encode::encode", G_SCALAR);
+
+    SPAGAIN;
+
+    if ( count != 1 ) 
+      croak("Encode returned something... strange... count = %d", count);
+
+    SV* out = POPs;
+
+    //sv_replace(in, out);
+    sv_copypv(in, out);
+    //SvREFCNT_dec(out);
+    SvREFCNT_dec(utf8);
+
+    PUTBACK;
+    FREETMPS;
+    LEAVE;
+
+  }
+}
+
 static PRInt64 cert_usage_to_certificate_usage(enum SECCertUsageEnum usage) {
   switch(usage) {
     case certUsageSSLClient:
@@ -1406,6 +1443,8 @@ fingerprint_md5(cert)
   } else if ( ix == 2 ) {
     rv = PK11_HashBuf(SEC_OID_SHA256, fingerprint, cert->derCert.data, cert->derCert.len);
     item.len = SHA256_LENGTH;
+  } else {
+    croak("Internal error - unknown function");
   }
   
   if ( rv != SECSuccess ) {
@@ -1438,6 +1477,12 @@ subject(cert)
   nickname = 14
   dbnickname = 15
   der = 16
+  country_name = 17
+  org_name = 18
+  org_unit_name = 19
+  locality_name = 20
+  state_name = 21
+
 
   PREINIT:
 
@@ -1461,10 +1506,37 @@ subject(cert)
     RETVAL = newSVpvf("%s", cert->nickname);
   } else if ( ix == 15 ) {
     RETVAL = newSVpvf("%s", cert->dbnickname);
-  } else if ( ix == 10 ) {
-    char * cn = CERT_GetCommonName(&cert->subject);
-    RETVAL = newSVpvf("%s", cn);
+  } else if ( ix == 10 || ( ix >= 17 && ix <= 21 ) ) {
+    char * cn = NULL;
+    switch ( ix ) {
+    	case 10:
+		cn = CERT_GetCommonName(&cert->subject);
+		break;
+	case 17:
+    		cn = CERT_GetCountryName(&cert->subject);
+		break;
+	case 18:
+    		cn = CERT_GetOrgName(&cert->subject);
+		break;
+	case 19:
+    		cn = CERT_GetOrgUnitName(&cert->subject);
+		break;
+	case 20:
+		cn = CERT_GetLocalityName(&cert->subject);
+		break;
+	case 21:
+		cn = CERT_GetStateName(&cert->subject);
+		break;
+	default:
+		croak("Internal error");
+	}
+	
+    if ( !cn ) 
+      XSRETURN_UNDEF;
+    SV* out = newSVpvf("%s", cn);
     PORT_Free(cn);
+    sv_encode(out);
+    RETVAL = out;
   } else if ( ix == 11 ) {
     if ( cert->isRoot == PR_TRUE ) {
       XSRETURN_YES;
@@ -1548,7 +1620,8 @@ subject(cert)
       sv_catpvn(out, (const char*) current->name.other.data, current->name.other.len);
       break;
   default:
-      sv_catpv(out, "UnknownElement,");
+      // simply ignore for now - more or less like firefox
+      //sv_catpv(out, "UnknownElement,");
       break;
   }
   current = CERT_GetNextGeneralName(current);

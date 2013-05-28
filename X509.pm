@@ -7,6 +7,7 @@ use 5.10.1;
 
 use vars qw($VERSION @EXPORT_OK);
 use Exporter;
+use Encode qw/encode/;
 use base qw(Exporter);
 
 use autodie qw(open close);
@@ -18,10 +19,11 @@ use Crypt::NSS::X509::Certificate;
 use Crypt::NSS::X509::CertList;
 use Crypt::NSS::X509::CRL;
 
-our $VERSION = '0.03_03';
+our $VERSION = '0.03';
 
 @EXPORT_OK = qw(
 );
+
 
 
 BOOT_XS: {
