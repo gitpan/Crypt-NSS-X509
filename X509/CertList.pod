@@ -57,11 +57,11 @@ certificates.
 
 =head1 AUTHOR
 
-Bernhard Amann, E<lt>bernhard@icsi.berkeley.eduE<gt>
+Johanna Amann, E<lt>johanna@icir.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2012 by Bernhard Amann
+Copyright 2012 by Johanna Amann
 
 This Library is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this

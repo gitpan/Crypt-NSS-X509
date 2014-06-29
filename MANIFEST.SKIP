@@ -1,5 +1,5 @@
 
-#!start included /Users/bernhard/sw/lib/perl5/5.16.0/ExtUtils/MANIFEST.SKIP
+#!start included /Users/johanna/sw/lib/perl5/5.16.0/ExtUtils/MANIFEST.SKIP
 # Avoid version control files.
 \bRCS\b
 \bCVS\b
@@ -55,7 +55,7 @@
 
 # Avoid MYMETA files
 ^MYMETA\.
-#!end included /Users/bernhard/sw/lib/perl5/5.16.0/ExtUtils/MANIFEST.SKIP
+#!end included /Users/johanna/sw/lib/perl5/5.16.0/ExtUtils/MANIFEST.SKIP
 
 
 .*\.swp

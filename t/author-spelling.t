@@ -17,7 +17,7 @@ X509
 API
 AIA
 Amann
-Bernhard
+Johanna
 MPL
 NSS
 api
@@ -59,3 +59,4 @@ certUsageUserCertImport
 certUsageVerifyCA
 dbnickname
 db
+oids

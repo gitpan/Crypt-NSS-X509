@@ -7,7 +7,6 @@ certs/root.ca
 certs/selfsigned.crt
 certs/thawte-ec.crt
 certs/thawte.crt
-Changes
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -35,6 +34,7 @@ t/003-verify-db.t
 t/004-db.t
 t/005-name.t
 t/006-crl.t
+t/007-signature.t
 t/author-critic.t
 t/author-pod-coverage.t
 t/author-pod.t
@@ -50,3 +50,4 @@ X509/CertList.pm
 X509/CertList.pod
 X509/CRL.pm
 X509/CRL.pod
+SIGNATURE                                Public-key signature (added by MakeMaker)
