@@ -32,4 +32,4 @@ resources:
   homepage: https://github.com/0xxon/perl-nss
   license: http://opensource.org/licenses/mozilla1.1.php
   repository: git://github.com/0xxon/perl-nss.git
-version: '0.04'
+version: '0.05'
